@@ -103,3 +103,8 @@ join Portfolio_Project..CovidVaccinations vac
 on dea.location = vac.location
 and dea.date = vac.date
 where dea.continent is not null
+
+create view Prova as
+Select sum(new_cases) as totalcases, sum(cast(new_deaths as int)) as total_deaths, sum(cast(new_deaths as int)) / SUM(new_cases) * 100 as DeathPercentage
+From Portfolio_Project..CovidDeaths
+where continent is not null
