@@ -4,24 +4,24 @@ Select location, date, total_cases, new_cases, total_deaths, population
 From Portfolio_Project..CovidDeaths
 order by 1,2
 
--- Casi totali vs Morti totali, cioè la percentuale di morti tra le persone che hanno contratto il covid
+-- Casi totali vs Morti totali, cioÃ¨ la percentuale di morti tra le persone che hanno contratto il covid
 Select location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
 From Portfolio_Project..CovidDeaths
 order by 1,2
 
--- Casi Totali vs Popolazione, cioè la percentuale di persone che ha il covid
+-- Casi Totali vs Popolazione, cioÃ¨ la percentuale di persone che ha il covid
 Select location, date, population, total_cases, (total_cases/population)*100 as CasesPercentage
 From Portfolio_Project..CovidDeaths
 Where location like '%Italy%'
 order by 1,2
 
--- Stati con il tasso di infetti più alto rispetto al numero di abitanti
+-- Stati con il tasso di infetti piÃ¹ alto rispetto al numero di abitanti
 Select location, population, Max(total_cases) as HighestInfectionCount, Max((total_cases/population))*100 as CasesPercentage
 From Portfolio_Project..CovidDeaths
 Group by Location, population
 order by CasesPercentage desc
 
---Stati con il più alto numero di morti in riferimento alla popolazione
+--Stati con il piÃ¹ alto numero di morti in riferimento alla popolazione
 Select location, population, Max(cast(total_deaths as int)) as TotalDeathCount, Max((total_deaths/population))*100 as DeathPercentage
 From Portfolio_Project..CovidDeaths
 Group by Location, population
@@ -70,7 +70,7 @@ select *, (rollingpeoplevaccinated/population)*100
 from popvsvac
 
 -- quante vaccinazioni siamo in ogni parte del mondo
--- per fare la stessa cosa, oltre alla CTE si può usare una tempTable (temporary table)
+-- per fare la stessa cosa, oltre alla CTE si puÃ² usare una tempTable (temporary table)
 
 drop table if exists #PercentPopulationVaccinated
 create table #PercentPopulationVaccinated
