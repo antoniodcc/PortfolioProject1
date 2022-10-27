@@ -66,7 +66,7 @@ select *
 from Portfolio_Project.dbo.NashvilleHousing
 
 -- Breaking out OwnerAddress (27 min 53 sec)
--- metodo molto più facile di quello mostrato in precedenza
+-- metodo molto piÃ¹ facile di quello mostrato in precedenza
 
 select OwnerAddress
 From Portfolio_Project.dbo.NashvilleHousing
