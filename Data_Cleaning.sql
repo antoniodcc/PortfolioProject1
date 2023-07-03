@@ -1,9 +1,8 @@
-/* https://www.youtube.com/watch?v=8rO7ztF4NtU&t=1212s&ab_channel=AlexTheAnalyst */
 
 select *
 from Portfolio_Project.dbo.NashvilleHousing
 
--- standardizziamo la data a SaleDate
+-- Standardize Date to SaleDate
 
 select SaleDateConverted, CONVERT(Date, SaleDate)
 from Portfolio_Project.dbo.NashvilleHousing
@@ -65,8 +64,7 @@ set PropertySplitCity = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddres
 select *
 from Portfolio_Project.dbo.NashvilleHousing
 
--- Breaking out OwnerAddress (27 min 53 sec)
--- metodo molto più facile di quello mostrato in precedenza
+-- Breaking out OwnerAddress
 
 select OwnerAddress
 From Portfolio_Project.dbo.NashvilleHousing
@@ -95,7 +93,7 @@ add OwnerSplitState nvarchar(255);
 update NashvilleHousing
 set OwnerSplitState = PARSENAME (REPLACE(OwnerAddress, ',', '.'), 1)
 
--- Change Y and N to Yes and No in SoldAsVacant (min 33 sec 33)
+-- Change Y and N to Yes and No in SoldAsVacant
 
 Select Distinct(SoldAsVacant), count(SoldasVacant)
 From Portfolio_Project.dbo.NashvilleHousing
@@ -115,7 +113,7 @@ set SoldAsVacant = CASE When SoldAsVacant = 'Y' then 'Yes'
 		else SoldAsVacant
 		end
 
--- Remove Duplicates (37 min 30 sec)
+-- Remove Duplicates
 
 with RowNumCTE as(
 select *,
@@ -136,7 +134,7 @@ select *
 from RowNumCTE
 where row_num > 1
 
--- Delete Unused Columns (47 min 16 sec)
+-- Delete Unused Columns
 
 Alter Table Portfolio_Project.dbo.NashvilleHousing
 drop column SaleDate, OwnerAddress, PropertyAddress
